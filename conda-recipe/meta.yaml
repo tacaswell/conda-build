@@ -1,0 +1,35 @@
+package:
+  name: conda-build
+  version: {{ environ['GIT_DESCRIBE_TAG'] }}.post{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+
+
+source:
+  git_url: ../
+  git_rev: {{ environ['GIT_FULL_HASH'] }}
+
+
+build:
+  number: 1
+
+  # Note that this will override the default build string with the Python
+  # and NumPy versions
+  string: {{ environ.get('GIT_BUILD_STR', '') }}_{{ py }}
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+    - openssl
+    - patchelf
+    - pychosat
+    - pyyaml
+    - readline
+    - requests
+    - sqlite
+    - tk
+    - yaml
+    - zlib
+    - tk
+    - jinja2
